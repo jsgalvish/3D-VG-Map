@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	var camera = new THREE.PerspectiveCamera(
 		75,
 		window.innerWidth/window.innerHeight,
-		0.1,
-		1000
+		1,
+		10000
 	);
 
-	camera.position.z = 100;
+	camera.position.z = 1000;
 
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight);
@@ -17,9 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	light.position.set(10, 0, 25);
 	scene.add(light);
 
-	var geometry = new THREE.BoxGeometry(20, 15, 10);
-	var material = new THREE.MeshNormalMaterial();
-	var cube = new THREE.Mesh(geometry, material);
+	var geometry = new THREE.BoxGeometry(640, 450, 110);
+
+	var loader = new THREE.TextureLoader();
+	var materialAray = [
+		new THREE.MeshBasicMaterial(  { map: loader.load("covers/N64/1right.png")}),
+		new THREE.MeshBasicMaterial(  { map: loader.load("covers/N64/1left.png")}),
+		new THREE.MeshBasicMaterial(  { map: loader.load("covers/N64/1top.png")}),
+		new THREE.MeshBasicMaterial(  { map: loader.load("covers/N64/1bot.png")}),
+		new THREE.MeshBasicMaterial(  { map: loader.load("covers/N64/1front.png")}),
+		new THREE.MeshBasicMaterial(  { map: loader.load("covers/N64/1back.png")}),
+	];
+
+	var cube = new THREE.Mesh(geometry, materialAray);
 	cube.rotation.x = 0.45;
 	cube.rotation.y = -0.25;
 
