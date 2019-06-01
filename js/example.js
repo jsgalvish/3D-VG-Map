@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	renderer.setSize( window.innerWidth, window.innerHeight);
 	document.body.appendChild( renderer.domElement);
 
+	var controls = new THREE.OrbitControls( camera, renderer.domElement );
+
 	var light = new THREE.PointLight(0xFFFF00);
 	light.position.set(10, 0, 25);
 	scene.add(light);
@@ -39,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	var render = function () {
 		requestAnimationFrame( render );
-
 		renderer.render(scene, camera);
 	};
 
